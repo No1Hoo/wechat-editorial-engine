@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "version": "2026-10-18",
+  "note": "轨道与字数区间的唯一事实源。所有入口（pipeline / Studio / 云端 worker / 测试）必须从此取值，禁止各自硬编码。",
+  "active_tracks": [
+    "A",
+    "D",
+    "F"
+  ],
+  "deprecated_tracks": [
+    "B",
+    "C",
+    "E",
+    "S"
+  ],
+  "ranges": {
+    "A": [
+      2200,
+      2800,
+      6500,
+      10500
+    ],
+    "D": [
+      2200,
+      2800,
+      6500,
+      10500
+    ],
+    "F": [
+      2200,
+      2800,
+      6500,
+      10500
+    ]
+  },
+  "deprecated_ranges_readonly": {
+    "B": [
+      500,
+      800,
+      0,
+      15500
+    ],
+    "C": [
+      2200,
+      2900,
+      6500,
+      9000
+    ],
+    "E": [
+      3200,
+      3800,
+      9500,
+      14000
+    ],
+    "S": [
+      1500,
+      1950,
+      4500,
+      8000
+    ]
+  },
+  "count_scope": "纯正文汉字：剥离 HTML 标签与图注后统计；不含标题、摘要与图片来源",
+  "min_images": {
+    "A": 6,
+    "D": 6,
+    "F": 6
+  },
+  "image_policy_note": "配图相关下限的唯一事实源：min_images=正文图片总数下限；min_photographs=纪实实拍图下限（仅列出的轨道适用）。AGENTS.md、pipeline Gate17b、delivery_gate、Studio audit_gate 与测试必须全部读此值。历史冲突：AGENTS.md:99 曾写「A 轨≥2张」（实为 min_photographs），AGENTS.md:354 曾写「A/D 6~8 张」（实为 min_images），均已收敛到本文件。",
+  "deprecation_policy": "B/C/E/S 不得新增立项、渲染或推送；历史资产可只读打开与检索",
+  "min_photographs": {
+    "A": 2
+  }
+}

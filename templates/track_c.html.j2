@@ -1,0 +1,59 @@
+{# 
+  Jackie 观察视角 · 轨道 C 【开源硬核极客线】标准排版模具 (Template C)
+  对齐 FishTally 与 PlantDreamer 标杆规范
+#}
+<section style="font-size:15px;line-height:1.86;color:#17252f;letter-spacing:0.5px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue','PingFang SC','Hiragino Sans GB','Microsoft YaHei UI','Microsoft YaHei',Arial,sans-serif;padding:0 8px;text-align:justify;">
+
+{% if hook_quote %}
+<blockquote style="margin:20px 0;padding:14px 16px;background:#eef8f7;border-left:3px solid #00a6a6;color:#24434a;font-size:14.5px;line-height:1.75;text-align:justify;">
+“{{ hook_quote }}”
+</blockquote>
+{% endif %}
+
+{% for sec in sections %}
+<h2 style="font-size:18px;font-weight:bold;color:#0f2b3c;border-left:4px solid #00a6a6;padding-left:10px;margin:28px 0 14px;text-align:left;">{{ sec.title }}</h2>
+
+{% for p in sec.paragraphs %}
+<p>{{ p|safe }}</p>
+{% endfor %}
+
+{% if sec.gif_or_image %}
+<p><img src="{{ img_urls.get(sec.gif_or_image.key, sec.gif_or_image.key) }}" style="width:100%;border-radius:6px;margin:18px 0 6px;display:block;" /></p>
+<p style="font-size:13px;color:#6b7785;text-align:center;margin:0 0 18px;">{{ sec.gif_or_image.caption }}</p>
+{% endif %}
+
+{% if sec.code_block %}
+<section style="margin:16px 0;padding:14px 16px;background:#1e293b;border-radius:6px;color:#f8fafc;font-family:Consolas, Monaco, monospace;font-size:13px;line-height:1.6;overflow-x:auto;">
+<pre style="margin:0;white-space:pre-wrap;">{{ sec.code_block|safe }}</pre>
+</section>
+{% endif %}
+
+{% if sec.highlight_box %}
+<section style="margin:16px 0;padding:14px 16px;background:#f0fdf4;border-left:4px solid #16a34a;border-radius:4px;">
+<strong style="color:#166534;font-size:14px;">{{ sec.highlight_box.title }}</strong><br />
+<span style="font-size:13.5px;color:#14532d;line-height:1.7;">{{ sec.highlight_box.content|safe }}</span>
+</section>
+{% endif %}
+
+{% if sec.jackie_observation %}
+{# 军规 §4：禁止独立「Jackie 观察视角」标签；观点自然融入正文。 #}
+<p style="margin:16px 0;text-align:justify;">{{ sec.jackie_observation|safe }}</p>
+{% endif %}
+
+{% endfor %}
+
+{% if resource_card %}
+<section style="margin:28px 0 20px;padding:18px 20px;background:#f8f9fa;border-radius:8px;border:1px solid #e2e8f0;">
+<p style="margin:0 0 8px;font-size:15px;font-weight:bold;color:#0f2b3c;">🛠️ 极客硬核资源包 · 一键私域闭环</p>
+<p style="margin:0 0 12px;font-size:13.5px;color:#475569;line-height:1.7;">{{ resource_card.desc }}</p>
+<section style="padding:10px 14px;background:#e2f4f3;border-radius:4px;color:#007a7a;font-weight:bold;font-size:14px;text-align:center;">
+关注公众号后台回复「<span style="color:#e11d48;font-size:15px;">{{ resource_card.keyword }}</span>」直取完整权重与工程源码
+</section>
+</section>
+{% endif %}
+
+{% if show_signature %}
+<p style="text-align:right;color:#64748b;font-size:13.5px;margin-top:24px;">—— jackie</p>
+{% endif %}
+
+</section>

@@ -1,0 +1,166 @@
+{#
+  Jackie 观察视角 · 轨道 A 【深度调查母舰】标准排版模具 (Template A)
+  100% 对齐《海水稻》与对虾黄金标杆规范
+  排版结构绝对锁死，杜绝大模型样式漂移！
+#}
+<section style="font-size:15px;line-height:1.86;color:#17252f;letter-spacing:0.5px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue','PingFang SC','Hiragino Sans GB','Microsoft YaHei UI','Microsoft YaHei',Arial,sans-serif;padding:0 8px;text-align:justify;">
+
+{% if lead_quote %}
+<blockquote style="margin:20px 0;padding:14px 16px;background:#eef8f7;border-left:3px solid #00a6a6;color:#24434a;font-size:14.5px;line-height:1.75;text-align:justify;">
+“{{ lead_quote }}”
+</blockquote>
+{% endif %}
+
+{% if lead_image %}
+<section style="margin:20px 0 26px;">
+<img src="{{ img_urls.get(lead_image.key, lead_image.key) }}" style="width:100%;height:auto;display:block;border-radius:4px;"/>
+<p style="margin:9px 0 0;text-align:left;font-size:12px;line-height:1.7;color:#7a8794;">{{ lead_image.caption }}</p>
+</section>
+{% endif %}{% if key_takeaways and key_takeaways|length > 0 %}
+<section style="margin:20px 0;padding:14px 16px;background:#f8f9fa;border-radius:6px;border-left:4px solid #2a9d8f;text-align:justify;">
+<p style="margin:0 0 8px;color:#083b4c;font-size:14.5px;font-weight:bold;text-align:left;">阅读要点</p>
+<ul style="margin:0;padding-left:18px;color:#495057;font-size:13.5px;line-height:1.8;text-align:justify;">
+{% for item in key_takeaways %}
+<li style="margin:6px 0;text-align:justify;"><strong>{{ item.label }}</strong>：{{ item.desc }}</li>
+{% endfor %}
+</ul>
+</section>
+{% endif %}
+
+{% for sec in sections %}
+<section style="margin:30px 0 16px;padding:10px 0 10px 14px;border-left:2px solid #b9c6cf;">
+<p style="margin:0;font-size:12px;color:#8a99a8;letter-spacing:1.5px;text-align:left;">{{ sec.num }}</p>
+<p style="margin:3px 0 0;font-size:16px;font-weight:bold;color:#243b47;line-height:1.55;text-align:left;">{{ sec.title }}</p>
+</section>
+
+{% for p in sec.paragraphs %}
+<p style="margin:0 0 16px;text-align:justify;color:#2b3f4a;">{{ p|safe }}</p>
+{% endfor %}
+
+{% if sec.image %}
+<p><img src="{{ img_urls.get(sec.image.key, sec.image.key) }}" style="width:100%;border-radius:6px;margin:18px 0 6px;display:block;" /></p>
+<p style="font-size:13px;color:#6b7785;text-align:center;margin:0 0 18px;">{{ sec.image.caption }}</p>
+{% endif %}
+
+{% if sec.extra_paragraphs_after_image %}
+{% for p in sec.extra_paragraphs_after_image %}
+<p>{{ p|safe }}</p>
+{% endfor %}
+{% endif %}
+
+{% if sec.callout %}
+<section style="margin:22px 0;padding:16px 20px;background:{{ sec.callout.bg|default('#fef2f2') }};border-left:4px solid {{ sec.callout.border|default('#ef4444') }};border-radius:6px;color:{{ sec.callout.color|default('#991b1b') }};font-size:14px;line-height:1.75;text-align:justify;">
+<b style="font-size:15px;color:{{ sec.callout.title_color|default('#b91c1c') }};">{{ sec.callout.title }}</b><br />
+{{ sec.callout.content|safe }}
+</section>
+{% endif %}
+
+{% if sec.extra_paragraphs_after_callout %}
+{% for p in sec.extra_paragraphs_after_callout %}
+<p>{{ p|safe }}</p>
+{% endfor %}
+{% endif %}
+
+{% if sec.quote_card %}
+<section style="margin:20px 0;padding:15px 18px;background:#f7fafa;border-radius:6px;border:1px solid #e0ecea;">
+<strong style="color:#0f2b3c;font-size:14.5px;">【{{ sec.quote_card.source_title }}】</strong><br />
+<span style="font-size:13.5px;color:#334155;line-height:1.75;">“{{ sec.quote_card.quote_text }}”</span>
+</section>
+{% endif %}
+
+{% if sec.items_box %}
+<section style="margin:16px 0;padding:14px 16px;background:#fcfdfd;border-left:3px solid #00a6a6;border-radius:4px;border-top:1px solid #edf2f7;border-right:1px solid #edf2f7;border-bottom:1px solid #edf2f7;">
+{% if sec.items_box.title %}<p style="margin:0 0 6px;font-weight:bold;color:#0f2b3c;font-size:14.5px;">{{ sec.items_box.title }}</p>{% endif %}
+<ul style="margin:6px 0 0;padding-left:18px;line-height:1.75;font-size:13.5px;color:#334155;">
+{% for it in sec.items_box['items'] %}
+<li><strong>{{ it.name }}</strong>：{{ it.desc|safe }}</li>
+{% endfor %}
+</ul>
+</section>
+{% endif %}
+
+{% if sec.extra_paragraphs %}
+{% for p in sec.extra_paragraphs %}
+<p>{{ p|safe }}</p>
+{% endfor %}
+{% endif %}
+
+{% if sec.golden_quote %}
+<section style="margin:22px 0;padding:16px 20px;background:#f0fdfa;border-left:4px solid #0d9488;border-radius:4px;">
+  <p style="margin:0;font-size:15.5px;font-weight:600;color:#134e4a;line-height:1.75;letter-spacing:0.3px;">“{{ sec.golden_quote|safe }}”</p>
+</section>
+{% endif %}
+
+{% if sec.extra_image %}
+<p><img src="{{ img_urls.get(sec.extra_image.key, sec.extra_image.key) }}" style="width:100%;border-radius:6px;margin:18px 0 6px;display:block;" /></p>
+<p style="font-size:13px;color:#6b7785;text-align:center;margin:0 0 18px;">{{ sec.extra_image.caption }}</p>
+{% endif %}
+
+{% if sec.final_card %}
+<p><img src="{{ img_urls.get(sec.final_card.key, sec.final_card.key) }}" style="width:100%;border-radius:6px;margin:18px 0 6px;display:block;" /></p>
+<p style="font-size:13px;color:#6b7785;text-align:center;margin:0 0 18px;">{{ sec.final_card.caption }}</p>
+{% endif %}
+
+{% if sec.jackie_observation %}
+{# 军规 §4：观点按证据需要自然融入正文，禁止追加独立的「Jackie 观察视角」标签。 #}
+<p style="margin:16px 0;text-align:justify;">{{ sec.jackie_observation|safe }}</p>
+{% endif %}
+
+{% endfor %}
+
+{% if decision_guides and decision_guides|length > 0 %}
+<h2 style="font-size:18px;font-weight:bold;color:#0f2b3c;border-left:4px solid #00a6a6;padding-left:10px;margin:28px 0 14px;text-align:left;">0{{ sections|length + 1 }}. {{ decision_section_title|default("需要核对的事项") }}</h2>
+
+<p style="margin:16px 0;text-align:justify;">{{ decision_intro|default("") }}</p>
+
+{% for guide in decision_guides %}
+<section style="margin:16px 0;padding:14px 16px;background:#fcfdfd;border-left:3px solid #00a6a6;border-radius:4px;border-top:1px solid #edf2f7;border-right:1px solid #edf2f7;border-bottom:1px solid #edf2f7;">
+<p style="margin:0 0 6px;font-weight:bold;color:#0f2b3c;font-size:14.5px;">{{ guide.title }}</p>
+<p style="margin:0;font-size:13.5px;line-height:1.75;color:#334155;">{{ guide.content|safe }}</p>
+</section>
+{% endfor %}
+{% endif %}
+
+{% if benchmarks and benchmarks|length > 0 %}
+<h2 style="font-size:18px;font-weight:bold;color:#0f2b3c;border-left:4px solid #00a6a6;padding-left:10px;margin:28px 0 14px;text-align:left;">0{{ sections|length + 2 }}. 补充证据</h2>
+
+{% for b in benchmarks %}
+<p style="margin:16px 0;text-align:justify;">{{ b|safe }}</p>
+{% endfor %}
+{% endif %}
+
+{# 军规 §1：全轨道取缔文末参考文献列表，出处必须在正文里自然交代。
+   references 字段仍保留在 content.json 作为内部可追溯证据，但默认不渲染到读者端。
+   若确需外显（例如监管要求），必须由独立审批显式开启 show_references，不能靠模板默认输出。 #}
+{% if show_references and references and references|length > 0 %}
+<h2 style="font-size:18px;font-weight:bold;color:#0f2b3c;border-left:4px solid #00a6a6;padding-left:10px;margin:28px 0 14px;text-align:left;">资料来源</h2>
+
+<ol style="margin:10px 0;padding-left:18px;line-height:1.75;font-size:13.5px;color:#55606e;text-align:justify;">
+{% for r in references %}
+<li style="margin:6px 0;text-align:justify;">{{ r|safe }}</li>
+{% endfor %}
+</ol>
+{% endif %}
+
+{% if industry_toolkit %}
+<section style="margin:24px 0 20px;padding:16px 18px;background:#fefce8;border:1px solid #fef08a;border-left:4px solid #eab308;border-radius:6px;">
+  <p style="margin:0 0 6px;font-size:14.5px;font-weight:bold;color:#854d0e;">📥 【{{ industry_toolkit.title|default("Jackie 独家产业决策工具包") }}】</p>
+  <p style="margin:0;font-size:13.5px;line-height:1.75;color:#713f12;">{{ industry_toolkit.desc|safe }}</p>
+</section>
+{% endif %}
+
+{% if recommendations and recommendations|length > 0 %}
+<section style="margin:28px 0 20px;padding:16px 18px;background:#f8f9fa;border-radius:6px;border-left:4px solid #00a6a6;">
+<p style="margin:0 0 10px;font-size:15px;font-weight:bold;color:#083b4c;">📚 Jackie 观察视角 · {{ recommendation_title|default("现代产业深度精选") }}</p>
+{% for rec in recommendations %}
+<section style="margin:9px 0;font-size:14px;"><ul style="margin:0;padding-left:18px;text-align:justify;"><li style="margin:6px 0;text-align:justify;"><a href="{{ rec.url }}" style="color:#00a6a6;text-decoration:none;font-weight:600;">《{{ rec.title }}》</a>{% if rec.desc %}<span style="color:#6c757d;font-size:12.5px;margin-left:4px;">—— {{ rec.desc }}</span>{% endif %}</li></ul></section>
+{% endfor %}
+</section>
+{% endif %}
+
+{# 军规 §13：严禁机械模板签名。署名改为可选，默认不输出。 #}
+{% if show_signature %}
+<p style="text-align:right;color:#64748b;font-size:13.5px;margin-top:24px;">—— jackie</p>
+{% endif %}
+
+</section>

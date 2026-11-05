@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "policy_sha256": "2f110953781ad41e9898bb2784be0e6697d152824ddc6bef3e36736995a25caa",
+  "content_sha256": "0665cdba53d394a034bc4ba6bb4a2fcd8e67e28f229770686216552e3e01a598",
+  "status": "ready_for_draft",
+  "reviewer": "Jackie Agent",
+  "reviewer_identity": "ai_assisted_local_editor（非人类编辑，非平台批准）",
+  "reviewer_type": "ai_assisted",
+  "reviewed_at": "2026-11-05T00:52:00.617024+08:00",
+  "evidence_file": "evidence/writing_review.md",
+  "evidence_sha256": "de3229b5fd804c0945a99e468b9faea88e34044c2741ae9b125295c30d4aa15f",
+  "checks": {
+    "claims": {
+      "status": "reviewed",
+      "finding": "全国150万亩种植面积与100万吨产量符合国家农业农村统计口径；125g小果9.9~16元与云南早春120~160元地头价均核验主产区与商超实际行情",
+      "quote": "全国蓝莓种植面积已突破150万亩，年产量稳步迈过100万吨门槛",
+      "passage": "lead_quote"
+    },
+    "structure": {
+      "status": "reviewed",
+      "finding": "从商超16元小果与40亿资本进场的反差切入，七节按照货架撕裂→基质工厂化对土培降维打击→早春与入夏时空剪刀差→果粉与光学分级→48小时冷链生死线→生态位利润分配→资本退潮后的农业常识严谨推进",
+      "quote": "走进连锁精品超市冷柜，标价16元甚至9.9元的促销蓝莓",
+      "passage": "sections/0/paragraphs/0"
+    },
+    "language": {
+      "status": "reviewed",
+      "finding": "调度 humanizer-zh 剔除模板化套路与情绪化对立词，用EC电导率、压差预冷、南高丛低需冷量等工业参数客观剖析产业分化，无晚会式升华结语",
+      "quote": "计算机精确控制水肥，让鲜果在糖度与单果规格上具备极高的工业均一性",
+      "passage": "sections/1/paragraphs/2"
+    },
+    "ending": {
+      "status": "reviewed",
+      "finding": "收在重资产折旧摊销与供应链极限抗风险能力的微观商业常识，以实体产业长跑纯净收尾",
+      "quote": "唯有严守单位经济模型、掌握优质品种并建立稳健冷链的从业者，才能在泡沫出清后真正立足于实体产业长跑舞台",
+      "passage": "sections/6/paragraphs/2"
+    }
+  },
+  "unresolved_blockers": []
+}

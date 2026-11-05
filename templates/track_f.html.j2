@@ -1,0 +1,77 @@
+{# Content determines sequence; the template sets reading rhythm. #}
+{% if layout_profile|default('') == 'solar_editorial' %}
+{% include 'track_f_solar_editorial.html.j2' %}
+{% elif layout_profile|default('') == 'matcha_editorial' %}
+{% include 'track_f_matcha_editorial.html.j2' %}
+{% else %}
+<section style="font-size:16px;line-height:1.95;color:#292826;letter-spacing:0.5px;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;text-align:justify;">
+{% set hook = lead_hook or x_lead_hook or lead_quote %}
+{% if hook %}
+<section style="margin:28px 0 36px;padding:0 0 24px;border-bottom:1px solid #dedbd5;">
+<p style="margin:0;font-size:18px;line-height:1.9;color:#46423c;font-family:'Songti SC',SimSun,serif;">{{ hook }}</p>
+</section>
+{% endif %}
+{% if lead_image %}
+<section style="margin:0 0 36px;">
+<img src="{{ img_urls.get(lead_image.key, lead_image.key) }}" style="width:100%;height:auto;display:block;"/>
+<p style="margin:9px 0 0;text-align:left;font-size:12px;line-height:1.7;color:#999187;">{{ lead_image.caption }}</p>
+</section>
+{% endif %}
+{% if key_takeaways %}
+<section style="margin:0 0 38px;color:#7d766b;font-size:13px;line-height:1.9;">
+{% for item in key_takeaways %}<p style="margin:0 0 10px;"><strong>{{ item.label }}</strong>　{{ item.desc }}</p>{% endfor %}
+</section>
+{% endif %}
+{% for sec in sections %}
+<h2 style="font-size:21px;font-weight:700;line-height:1.55;color:#211f1c;margin:44px 0 24px;border-left:1px solid transparent;padding-left:1px;text-align:left;">{{ sec.title }}</h2>
+{% for p in sec.paragraphs %}
+<p style="margin:0 0 20px;">{{ p|safe }}</p>
+{% endfor %}
+{% if sec.items_box %}
+<section style="margin:32px 0;padding:18px 0 8px;border-top:2px solid #4c473e;border-bottom:1px solid #d8d3ca;">
+<p style="font-size:13px;color:#81786a;margin:0 0 18px;">{{ sec.items_box.title }}</p>
+{% for row in sec.items_box['items']|batch(2) %}
+<section style="display:table;width:100%;table-layout:fixed;margin:0 0 18px;">
+{% for it in row %}
+<section style="display:table-cell;vertical-align:top;padding:0 12px 0 0;">
+<p style="margin:0 0 8px;font-size:12px;color:#81786a;">{{ it.name }}</p>
+<p style="margin:0;font-size:14px;line-height:1.85;color:#514637;">{{ it.desc|safe }}</p>
+</section>
+{% endfor %}
+</section>
+{% endfor %}
+</section>
+{% endif %}
+{% if sec.callout %}
+<section style="margin:28px 0;padding:18px 20px;background:#f6f4ef;">
+{% if sec.callout.title %}<p style="margin:0 0 10px;font-size:14px;font-weight:700;color:#5e5344;">{{ sec.callout.title }}</p>{% endif %}
+<p style="margin:0;font-size:15px;line-height:1.9;color:#615c54;">{{ sec.callout.content|safe }}</p>
+</section>
+{% endif %}
+{% if sec.quote_card %}
+<section style="margin:32px 12px;padding:20px 0;border-top:1px solid #d8d3ca;border-bottom:1px solid #d8d3ca;">
+<p style="margin:0 0 12px;font-size:17px;line-height:1.95;font-family:'Songti SC',SimSun,serif;color:#514c44;">{{ sec.quote_card.quote_text }}</p>
+<p style="margin:0;text-align:right;font-size:12px;color:#918a7f;">{{ sec.quote_card.source_title }}</p>
+</section>
+{% endif %}
+{% for p in sec.extra_paragraphs|default([]) %}
+<p style="margin:0 0 20px;">{{ p|safe }}</p>
+{% endfor %}
+{% set images = sec.images if sec.images else ([sec.image] if sec.image else []) %}
+{% for img in images %}
+<section style="margin:30px 0 36px;">
+<img src="{{ img_urls.get(img.key, img.key) }}" style="width:100%;height:auto;display:block;"/>
+<p style="margin:9px 0 0;text-align:left;font-size:12px;line-height:1.7;color:#999187;">{{ img.caption }}</p>
+</section>
+{% endfor %}
+{% if sec.golden_quote %}
+<section style="margin:34px 16px 42px;padding:20px 0;border-top:1px solid #beb7aa;">
+<p style="margin:0;font-family:'Songti SC',SimSun,serif;font-size:19px;line-height:1.9;text-align:left;color:#554b3b;">{{ sec.golden_quote|safe }}</p>
+</section>
+{% endif %}
+{% if sec.jackie_observation %}<p style="margin:0 0 20px;">{{ sec.jackie_observation|safe }}</p>{% endif %}
+{% endfor %}
+{% if comparison_card %}<p style="margin:24px 0;">{{ comparison_card|safe }}</p>{% endif %}
+{% if copyright_disclaimer %}<p style="font-size:12px;color:#928a7c;">{{ copyright_disclaimer|safe }}</p>{% endif %}
+</section>
+{% endif %}

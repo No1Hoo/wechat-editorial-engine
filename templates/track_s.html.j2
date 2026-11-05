@@ -1,0 +1,46 @@
+{# 
+  Jackie 观察视角 · 轨道 S 【大众生活反直觉 · 农渔牧硬核短平快】标准排版模具 (Template S)
+  专供生活消费反常识、农渔牧底层科学与商业算账短文（1,500~1,900字，标题≤10字）
+#}
+<section style="font-size:15px;line-height:1.86;color:#1e293b;letter-spacing:0.5px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue','PingFang SC','Hiragino Sans GB','Microsoft YaHei UI','Microsoft YaHei',Arial,sans-serif;padding:0 8px;text-align:justify;">
+
+{% if hook_quote %}
+<blockquote style="margin:20px 0;padding:14px 16px;background:#f8fafc;border-left:4px solid {{ accent_color|default('#2563eb') }};color:#334155;font-size:14.5px;line-height:1.75;text-align:justify;">
+{{ hook_quote }}
+</blockquote>
+{% endif %}
+
+{% for sec in sections %}
+<h2 style="font-size:18px;font-weight:bold;color:#0f172a;border-left:4px solid {{ accent_color|default('#2563eb') }};padding-left:10px;text-align:left;margin:28px 0 14px;">{{ sec.title }}</h2>
+
+{% for p in sec.paragraphs %}
+<p style="margin:14px 0;text-align:justify;">{{ p|safe }}</p>
+{% endfor %}
+
+{% if sec.image %}
+<p style="margin:18px 0 6px;"><img src="{{ img_urls.get(sec.image.key, sec.image.key) }}" style="width:100%;border-radius:6px;display:block;" /></p>
+<p style="font-size:13px;color:#64748b;text-align:center;margin:0 0 18px;">{{ sec.image.caption }}</p>
+{% endif %}
+
+{% if sec.card %}
+<section style="margin:20px 0;padding:16px 18px;background:{{ sec.card.bg|default('#f1f5f9') }};border-radius:6px;border-left:4px solid {{ sec.card.border|default(accent_color|default('#2563eb')) }};">
+<p style="margin:0 0 10px;font-size:14.5px;font-weight:bold;color:#0f172a;text-align:left;">{{ sec.card.title }}</p>
+<ul style="margin:0;padding-left:18px;color:#334155;font-size:13.5px;line-height:1.75;text-align:justify;">
+{% for item in sec.card['items'] %}
+<li style="margin:6px 0;text-align:justify;">{{ item|safe }}</li>
+{% endfor %}
+</ul>
+</section>
+{% endif %}
+
+{% if sec.jackie_observation %}
+<section style="margin:24px 0;padding:16px 18px;background:#faf9f6;border-radius:6px;border:1px solid #e2e8f0;border-left:4px solid #f59e0b;">
+<p style="margin:0 0 8px;font-size:14.5px;font-weight:bold;color:#78350f;text-align:left;">💡 Jackie 观察视角</p>
+<p style="margin:0;font-size:14px;color:#451a03;line-height:1.75;text-align:justify;">{{ sec.jackie_observation|safe }}</p>
+</section>
+{% endif %}
+
+{% endfor %}
+
+</section>
+

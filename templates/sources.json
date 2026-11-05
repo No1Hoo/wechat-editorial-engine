@@ -1,0 +1,31 @@
+{
+  "article_id": "TODO_SLUG",
+  "images": [
+    {
+      "id": "IMG1",
+      "filename": "TODO.jpg",
+      "type": "photo",
+      "source": "TODO",
+      "source_page_url": "https://example.org/source-page",
+      "image_url": "https://example.org/original-image.jpg",
+      "rights_status": "TODO",
+      "creator": "TODO",
+      "semantic_verified": true,
+      "visible_subject": "TODO 真实查看画面后填写",
+      "proves": "TODO",
+      "limitations": "TODO",
+      "intended_slot": "first_body_image",
+      "public_use": "wechat_article",
+      "visual_review": {
+        "status": "pass",
+        "reviewer": "independent visual editor",
+        "reviewed_at": "YYYY-MM-DD",
+        "observed_subject": "TODO",
+        "observed_state": "TODO",
+        "observed_action": "TODO",
+        "context_match": "TODO",
+        "cannot_prove": "TODO"
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+ENV/
+
+# Sensitive credentials & keys (STRICT PROHIBITION)
+accounts.yaml
+.env
+.env.*
+!.env.example
+secrets/
+*.pem
+*.key
+*.token
+*.p12
+.token_cache*.json
+
+# Runtime cache, local studio data & temporary dumps
+scratch/
+tmp/
+*.log
+.studio/
+**/.studio/
+build_manifest.json
+cdn_urls.json
+readable_draft.md
+
+# Production data (Keep OSS repository clean)
+generated/
+candidates/
+reports/mp_raw/
+reports/operations_*/
+
+# OS & IDE artifacts
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+*.swp

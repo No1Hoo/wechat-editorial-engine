@@ -1,0 +1,34 @@
+{
+  "article_title": "TODO",
+  "target_reader": "TODO",
+  "cover": {
+    "path": "assets/cover.jpg",
+    "source_photo_path": "assets/TODO.jpg",
+    "cover_text": "TODO，建议不超过8个字",
+    "job": "让读者一眼看懂核心对象或疑问",
+    "must_not_mislead": "TODO",
+    "same_as_first_body_image": false
+  },
+  "first_body_image": {
+    "path": "assets/TODO.jpg",
+    "job": "承接开头对象或真实消费场景",
+    "must_not_mislead": "TODO"
+  },
+  "middle_images": [
+    {
+      "path": "assets/TODO.jpg",
+      "job": "解释机制、对照、标准或购买动作",
+      "must_not_mislead": "TODO"
+    }
+  ],
+  "search_keywords": [
+    "TODO English search terms"
+  ],
+  "preferred_sources": [
+    "Wikimedia Commons",
+    "official institution",
+    "open-access paper",
+    "self-shot"
+  ],
+  "sources_json_status": "pending_visual_review"
+}

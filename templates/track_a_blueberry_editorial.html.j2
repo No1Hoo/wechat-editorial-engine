@@ -1,0 +1,57 @@
+{#- 蓝莓全产业链篇专属定制版式 -#}
+<section style="padding:0 4px;font-size:16px;line-height:1.85;color:#1e293b;letter-spacing:.5px;text-align:justify;">
+{%- if lead_quote %}
+<blockquote style="margin:8px 0 22px;padding:12px 14px;background:#f8fafc;border-left:3px solid #1e1b4b;font-size:15px;line-height:1.8;color:#1e293b;text-align:justify;">{{ lead_quote }}</blockquote>
+{%- elif lead_hook %}
+<div style="margin:8px 0 22px;"><div style="width:28px;height:2px;background:#1e1b4b;margin-bottom:10px;"></div><p style="margin:0;font-size:16.5px;line-height:1.8;color:#0f172a;font-weight:500;">{{ lead_hook }}</p></div>
+{%- endif %}
+{%- macro pic(img, m='20px 0') -%}
+<p style="margin:{{ m }};font-size:12px;color:#64748b;"><img src="{{ img_urls.get(img.key, img.key) }}" style="width:100%;display:block;margin-bottom:4px;border-radius:2px;">{{ img.caption }}</p>
+{%- endmacro %}
+{%- if lead_image %}{{ pic(lead_image, '0 0 24px') }}{% endif %}
+{%- if key_takeaways %}
+<div style="margin:0 0 24px;border-top:1px solid #0f172a;padding-top:10px;font-size:13.5px;line-height:1.7;color:#475569;text-align:left;">
+<p style="margin:0 0 2px;font-size:12px;letter-spacing:4px;color:#1e1b4b;font-weight:700;">核心底账与逻辑</p>
+{%- for it in key_takeaways %}
+<div style="padding:7px 0;border-bottom:1px solid #e2e8f0;"><b style="color:#1e1b4b;">0{{ loop.index }} · {{ it.label }}</b><br>{{ it.desc }}</div>
+{%- endfor %}
+</div>
+{%- endif %}
+{%- for sec in sections %}
+{%- set parts = sec.title.split('：') %}
+<h2 style="margin:30px 0 12px;font-size:18px;color:#0f172a;border-left:3px solid #1e1b4b;padding-left:10px;text-align:left;"><span style="font:12px Georgia,serif;letter-spacing:2px;color:#3730a3;">{{ '%02d' % loop.index }} · {{ parts[0] if parts|length > 1 else '' }}</span><br>{{ parts[1] if parts|length > 1 else sec.title }}</h2>
+{%- for p in sec.paragraphs %}
+{%- set pi = loop.index0 %}
+<p style="margin:14px 0;">{{ p|safe }}</p>
+{%- if sec.image and (sec.image_after|default(sec.image.after|default(1)) == pi) %}{{ pic(sec.image) }}{% endif %}
+{%- if sec.get('metrics') and sec.metrics.after == pi %}
+<div style="margin:18px 0;padding:10px 12px;background:#f8fafc;border:1px solid #e2e8f0;font-size:13px;color:#1e293b;text-align:left;">
+<b style="display:block;margin-bottom:6px;font-size:14px;color:#1e1b4b;">{{ sec.metrics.title }}</b>
+<table style="width:100%;border-collapse:collapse;font-size:13px;line-height:1.5;">
+{%- for m in sec.metrics.rows %}<tr style="border-bottom:1px solid #e2e8f0;vertical-align:top;"><td style="padding:5px 4px 5px 0;width:72px;color:#1e1b4b;font-weight:700;">{{ m.item }}</td><td style="padding:5px 4px;color:#64748b;">{{ m.legacy }}</td><td style="padding:5px 0 5px 4px;color:#3730a3;font-weight:700;">{{ m.modern }}</td></tr>{%- endfor %}
+</table>
+</div>
+{%- endif %}
+{%- if sec.get('price_cliff') and sec.price_cliff.after == pi %}
+<div style="margin:18px 0;text-align:left;">
+<b style="display:block;margin-bottom:6px;font-size:14px;color:#1e1b4b;">{{ sec.price_cliff.title }}</b>
+<table style="width:100%;table-layout:fixed;border-spacing:4px 0;font-size:13px;line-height:1.4;color:#475569;"><tr style="vertical-align:top;">
+{%- for s in sec.price_cliff.stages %}<td><div style="height:5px;background:{{ ['#3730a3','#6366f1','#cbd5e1'][loop.index0] }};margin-bottom:5px;"></div><b style="font:16px Georgia,serif;color:{{ '#3730a3' if loop.first else '#0f172a' }};">{{ s.price }}</b><br><span style="font-weight:600;color:#1e293b;">{{ s.timing }}</span><br><span style="font-size:11.5px;color:#64748b;">{{ s.desc }}</span></td>{%- endfor %}
+</tr></table>
+</div>
+{%- endif %}
+{%- if sec.get('callout') and sec.callout.after == pi %}
+<div style="margin:18px 0;padding:10px 12px;background:#fdfcfb;border-left:2px solid #b45309;font-size:13px;line-height:1.7;color:#334155;text-align:left;">
+<b style="display:block;margin-bottom:4px;color:#b45309;font-size:12.5px;letter-spacing:1px;">{{ sec.callout.title }}</b>
+{{ sec.callout.content | default(sec.callout.text) }}
+</div>
+{%- endif %}
+{%- endfor %}
+{%- endfor %}
+{%- if closing_box %}
+<div style="margin:26px 0 14px;border-top:1px solid #0f172a;padding-top:10px;text-align:left;">
+<p style="margin:0 0 3px;font-size:12px;letter-spacing:4px;color:#1e1b4b;font-weight:700;">{{ closing_box.title }}</p>
+<p style="margin:0;font-size:13.5px;line-height:1.75;color:#475569;text-align:justify;">{{ closing_box.text }}</p>
+</div>
+{%- endif %}
+</section>

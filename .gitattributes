@@ -1,0 +1,19 @@
+# 强制所有文本文件统一使用 UNIX LF 换行符，防止跨平台哈希校验崩溃
+* text=auto eol=lf
+
+*.py text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.j2 text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.yaml text eol=lf
+*.example text eol=lf
+
+# 二进制文件
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.webp binary
+*.ico binary

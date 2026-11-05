@@ -1,0 +1,99 @@
+{#
+  Jackie 观察视角 · 轨道 D 【全球产业雷达】标准排版模具 (Template D)
+  对齐日本温室西兰花老农、挪威三文鱼爆料等黄金标杆规范
+#}
+{% if layout_profile|default('') == 'hog_cycle_editorial' %}
+{% include 'track_d_hog_editorial.html.j2' %}
+{% elif layout_profile|default('') == 'robot_bankruptcy_editorial' %}
+{% include 'track_d_robot_editorial.html.j2' %}
+{% elif layout_profile|default('') == 'salmon_ras_editorial' %}
+{% include 'track_d_salmon_editorial.html.j2' %}
+{% elif layout_profile|default('') == 'fishmeal_editorial' %}
+{% include 'track_d_fishmeal_editorial.html.j2' %}
+{% else %}
+<section style="font-size:15px;line-height:1.86;color:#17252f;letter-spacing:0.5px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue','PingFang SC','Hiragino Sans GB','Microsoft YaHei UI','Microsoft YaHei',Arial,sans-serif;padding:0 8px;text-align:justify;">
+
+{% if x_lead_hook %}
+<blockquote style="margin:20px 0;padding:14px 16px;background:#eef8f7;border-left:3px solid #00a6a6;color:#24434a;font-size:14.5px;line-height:1.75;text-align:justify;">
+“{{ x_lead_hook }}”
+</blockquote>
+{% elif lead_hook or lead_quote %}
+<blockquote style="margin:20px 0;padding:14px 16px;background:#eef8f7;border-left:3px solid #00a6a6;color:#24434a;font-size:14.5px;line-height:1.75;text-align:justify;">
+“{{ lead_hook|default(lead_quote, true) }}”
+</blockquote>
+{% endif %}{% if lead_image %}
+<section style="margin:0 0 30px;">
+<img src="{{ img_urls.get(lead_image.key, lead_image.key) }}" style="width:100%;height:auto;display:block;border-radius:4px;"/>
+<p style="margin:9px 0 0;text-align:left;font-size:12px;line-height:1.7;color:#8a8378;">{{ lead_image.caption }}</p>
+</section>
+{% endif %}{% if key_takeaways and key_takeaways|length > 0 %}
+<section style="margin:20px 0;padding:14px 16px;background:#f8f9fa;border-radius:6px;border-left:4px solid #2a9d8f;text-align:justify;">
+<p style="margin:0 0 8px;color:#083b4c;font-size:14.5px;font-weight:bold;text-align:left;">阅读要点</p>
+<ul style="margin:0;padding-left:18px;color:#495057;font-size:13.5px;line-height:1.8;text-align:justify;">
+{% for item in key_takeaways %}
+<li style="margin:6px 0;text-align:justify;"><strong>{{ item.label }}</strong>：{{ item.desc }}</li>
+{% endfor %}
+</ul>
+</section>{% endif %}
+
+{% for sec in sections %}
+{% if sec.title|trim %}<h2 style="font-size:18px;font-weight:bold;color:#0f2b3c;border-left:4px solid #00a6a6;padding-left:10px;margin:28px 0 14px;text-align:left;">{{ sec.title }}</h2>{% endif %}
+
+{% for p in sec.paragraphs %}
+<p style="margin:16px 0;">{{ p|safe }}</p>
+{% endfor %}
+
+{% if sec.callout %}
+<div style="margin:22px 0;padding:16px 20px;background:{{ sec.callout.bg|default('#fef2f2') }};border-left:4px solid {{ sec.callout.border|default('#ef4444') }};border-radius:6px;color:{{ sec.callout.color|default('#991b1b') }};font-size:14px;line-height:1.75;">
+<b style="font-size:15px;color:{{ sec.callout.title_color|default('#b91c1c') }};">{{ sec.callout.title }}</b><br>
+{{ sec.callout.content|safe }}
+</div>
+{% endif %}
+
+{% if sec.images %}
+{% for img in sec.images %}
+<img src="{{ img_urls.get(img.key, img.key) }}" style="width:100%;display:block;margin:20px 0 6px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.06);"/>
+<p style="margin:0 0 22px;text-align:center;color:#64748b;font-size:12.5px;line-height:1.45;">{{ img.caption }}</p>
+{% endfor %}
+{% elif sec.image %}
+<img src="{{ img_urls.get(sec.image.key, sec.image.key) }}" style="width:100%;display:block;margin:20px 0 6px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.06);"/>
+<p style="margin:0 0 22px;text-align:center;color:#64748b;font-size:12.5px;line-height:1.45;">{{ sec.image.caption }}</p>
+{% endif %}
+
+{% if sec.quote_card %}
+<section style="margin:20px 0;padding:15px 18px;background:#f7fafa;border-radius:6px;border:1px solid #e0ecea;">
+<strong style="color:#0f2b3c;font-size:14.5px;">【{{ sec.quote_card.source_title }}】</strong><br />
+<span style="font-size:13.5px;color:#334155;line-height:1.75;">“{{ sec.quote_card.quote_text }}”</span>
+</section>{% endif %}{% if sec.items_box %}
+<section style="margin:16px 0;padding:14px 16px;background:#fcfdfd;border-left:3px solid #00a6a6;border-radius:4px;border-top:1px solid #edf2f7;border-right:1px solid #edf2f7;border-bottom:1px solid #edf2f7;">
+{% if sec.items_box.title %}<p style="margin:0 0 6px;font-weight:bold;color:#0f2b3c;font-size:14.5px;">{{ sec.items_box.title }}</p>{% endif %}
+<ul style="margin:6px 0 0;padding-left:18px;line-height:1.75;font-size:13.5px;color:#334155;">
+{% for it in sec.items_box['items'] %}
+<li><strong>{{ it.name }}</strong>：{{ it.desc|safe }}</li>
+{% endfor %}
+</ul>
+</section>{% endif %}{% if sec.extra_paragraphs %}
+{% for p in sec.extra_paragraphs %}
+<p style="margin:16px 0;">{{ p|safe }}</p>
+{% endfor %}{% endif %}{% if sec.golden_quote %}
+<section style="margin:22px 0;padding:16px 20px;background:#f0fdfa;border-left:4px solid #0d9488;border-radius:4px;">
+<p style="margin:0;font-size:15.5px;font-weight:600;color:#134e4a;line-height:1.75;letter-spacing:0.3px;">“{{ sec.golden_quote|safe }}”</p>
+</section>{% endif %}{% if sec.jackie_observation %}
+{# 军规 §4：禁止独立「Jackie 观察视角」标签；观点自然融入正文。 #}
+<p style="margin:16px 0;text-align:justify;">{{ sec.jackie_observation|safe }}</p>
+{% endif %}
+
+{% endfor %}
+
+{% if comparison_card %}
+<section style="margin:20px 0;padding:15px 18px;background:#f8fafc;border-radius:6px;border-left:4px solid #0284c7;">
+<strong style="color:#0369a1;font-size:14.5px;">关键对照</strong><br />
+<span style="font-size:13.5px;color:#334155;line-height:1.75;">{{ comparison_card|safe }}</span>
+</section>
+{% endif %}
+
+</section>
+{% endif %}
+
+
+

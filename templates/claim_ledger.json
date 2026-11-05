@@ -1,0 +1,14 @@
+{
+  "article_id": "TODO_SLUG",
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "TODO",
+      "source_url": "https://example.org/original-source",
+      "source_org": "TODO",
+      "source_date": "TODO",
+      "quote_or_note": "TODO 原文摘录或核验说明",
+      "status": "verified"
+    }
+  ]
+}

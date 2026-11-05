@@ -1,0 +1,39 @@
+{# Bespoke editorial layout for 2026-11-01-hog-deep-loss-9yuan-three-signals #}
+{%- macro picture(img) -%}
+<section style="margin:26px 0 34px"><img src="{{ img_urls.get(img.key,img.key) }}" style="display:block;width:100%"/><p style="margin:8px 0 0;font-size:12px;color:#7a828e;text-align:left">{{ img.caption }}</p></section>
+{%- endmacro -%}
+<section style="font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;font-size:16px;line-height:1.92;letter-spacing:0.4px;color:#20232a;padding:0 6px;text-align:justify">
+<!-- custom_visual_judgment: hog_cycle_editorial -->
+{%- set hook = lead_hook or x_lead_hook or lead_quote -%}
+{%- if hook %}
+<section style="margin:14px 0 24px;padding:0 0 20px;border-bottom:1px solid #dcdad2"><p style="margin:0;font-family:'Songti SC',SimSun,serif;font-size:16.5px;line-height:1.88;color:#363b42">{{ hook }}</p></section>
+{%- endif -%}
+{%- if lead_image %}{{ picture(lead_image) }}{% endif -%}
+{%- for sec in sections %}
+<h2 style="margin:38px 0 18px;{% if not loop.first %}padding-top:20px;border-top:1px solid #e0ded6;{% endif %}border-left:1px solid #fff;padding-left:1px;font-size:21px;color:#181a1f;text-align:left">{{ sec.title }}</h2>
+{%- for p in sec.paragraphs %}<p style="margin:0 0 18px">{{ p|safe }}</p>{% endfor -%}
+{%- if sec.items_box %}
+<section style="margin:24px 0 26px;text-align:left">
+{%- if sec.items_box.title %}<p style="margin:0 0 10px;font-size:12.5px;font-weight:600;color:#7a828e">{{ sec.items_box.title }}</p>{% endif -%}
+{%- for it in sec.items_box['items'] %}
+<p style="margin:0;padding:12px 0;border-top:1px solid #e0ded6;{% if loop.last %}border-bottom:1px solid #e0ded6;{% endif %}font-size:14px;line-height:1.78;color:#4c535e"><b style="font-size:15px;color:#20232a"><span style="color:#8b93a0;margin-right:8px">0{{ loop.index }}</span>{{ it.name }}</b><br/>{{ it.desc|safe }}</p>
+{%- endfor %}
+</section>
+{%- endif -%}
+{%- if sec.callout %}
+<section style="margin:24px 0 26px;padding:18px;background:#f7f6f2;border-top:2px solid #20232a;border-bottom:1px solid #dcdad2;text-align:left">
+<p style="margin:0 0 8px;font-size:13px;font-weight:700;color:#5a616d">{{ sec.callout.title }}</p>
+<p style="margin:0;font-size:14.5px;line-height:1.85;color:#2c3038">{{ sec.callout.content|safe }}</p>
+</section>
+{%- endif -%}
+{%- if sec.quote_card %}
+<section style="margin:28px 6px;padding:18px 0;border-top:1px solid #c8c5bc;border-bottom:1px solid #c8c5bc">
+<p style="margin:0 0 10px;font-family:'Songti SC',SimSun,serif;font-size:17px;line-height:1.9;color:#363b42">“{{ sec.quote_card.quote_text }}”</p>
+<p style="margin:0;font-size:12px;color:#7a828e;text-align:right">—— {{ sec.quote_card.source_title }}</p>
+</section>
+{%- endif -%}
+{%- for p in sec.extra_paragraphs|default([]) %}<p style="margin:0 0 18px">{{ p|safe }}</p>{% endfor -%}
+{%- if sec.image %}{{ picture(sec.image) }}{% endif -%}
+{%- if sec.images %}{% for img in sec.images %}{{ picture(img) }}{% endfor %}{% endif -%}
+{%- endfor %}
+</section>

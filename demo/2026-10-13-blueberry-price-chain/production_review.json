@@ -1,0 +1,70 @@
+{
+  "workflow": "JACKIE-WORKFLOW-2026-10-29-R10",
+  "approvals": {
+    "topic": {
+      "status": "approved",
+      "actor_type": "user",
+      "actor": "user",
+      "source": "user_message",
+      "scope": "topic",
+      "artifact_sha256": "6599bdda102d4edfcf87c2104bbe029d295e23855273cf8bcc68ca9170504f57",
+      "approved_at": "2026-11-04T23:34:40.464785+08:00",
+      "user_quote": "同意",
+      "evidence_file": "evidence/user_topic_approval_72e66df96ba19fd9f865a9db790fd7ed341bc6d648751fa96bcaad3e36a0185e.json",
+      "evidence_sha256": "72e66df96ba19fd9f865a9db790fd7ed341bc6d648751fa96bcaad3e36a0185e"
+    },
+    "sample": {
+      "status": "approved",
+      "actor_type": "user",
+      "actor": "user",
+      "source": "user_message",
+      "scope": "sample",
+      "artifact_sha256": "0416cb0dcac090740e1c1b6bb40cbb083226e651d5d99364e1cf78f7b4706d49",
+      "approved_at": "2026-11-04T23:34:40.464785+08:00",
+      "user_quote": "同意",
+      "evidence_file": "evidence/user_sample_approval_8199c1753102c4f12449eb0dd0fe4344b717c4ffd2e173b6cfa37928b55e31ca.json",
+      "evidence_sha256": "8199c1753102c4f12449eb0dd0fe4344b717c4ffd2e173b6cfa37928b55e31ca"
+    },
+    "manuscript": {
+      "status": "approved",
+      "actor_type": "user",
+      "actor": "user",
+      "source": "user_message",
+      "scope": "manuscript",
+      "artifact_sha256": "0665cdba53d394a034bc4ba6bb4a2fcd8e67e28f229770686216552e3e01a598",
+      "approved_at": "2026-11-05T00:52:34.939277+08:00",
+      "user_quote": "满意",
+      "evidence_file": "evidence/user_manuscript_approval_c9a1b48c63193734b3bc393bc9ecdfa1f44a5a1cee74c79bbbf8c524ac1f5b03.json",
+      "evidence_sha256": "c9a1b48c63193734b3bc393bc9ecdfa1f44a5a1cee74c79bbbf8c524ac1f5b03"
+    }
+  },
+  "schema": 1,
+  "policy_sha256": "2f110953781ad41e9898bb2784be0e6697d152824ddc6bef3e36736995a25caa",
+  "assessments": {
+    "originality": {
+      "status": "reviewed",
+      "finding": "跳过泛职场就业讨论，深入设施大棚10万~15万元/亩基质栽培硬账、反季节早春果120元vs集中上市20元断崖跌势、人工手采6~8元/公斤生死线，拆解上游专利卖铲人与渠道大果分级霸权。",
+      "evidence_file": "evidence/editorial_assessments.md",
+      "evidence_sha256": "c1a3dc894e7b4829d5fe1a82012a992556fb9914e6d1c3a3891876f5c3cbde12"
+    },
+    "freshness": {
+      "status": "reviewed",
+      "finding": "以2026年全国蓝莓产量突破100万吨成为全球第一大生产国、商超小果降至9.9~16元与地头收购价腰斩为产业由头，数据口径严格核查，旧数据不冒充现状。",
+      "evidence_file": "evidence/editorial_assessments.md",
+      "evidence_sha256": "c1a3dc894e7b4829d5fe1a82012a992556fb9914e6d1c3a3891876f5c3cbde12"
+    },
+    "reader_value": {
+      "status": "reviewed",
+      "finding": "解开大众对“蓝莓自由”与果农亏损并存的认知撕裂，解答钱被谁赚走的核心疑问，单段严格<=165字，图注无句号。",
+      "evidence_file": "evidence/editorial_assessments.md",
+      "evidence_sha256": "c1a3dc894e7b4829d5fe1a82012a992556fb9914e6d1c3a3891876f5c3cbde12"
+    },
+    "company_claims": {
+      "status": "reviewed",
+      "finding": "品种专利权（PBR）与无土基质设施大棚参数均来自公开行业报告与产地实录，客观陈述产业规律，不进行夸大或虚假承诺。",
+      "evidence_file": "evidence/editorial_assessments.md",
+      "evidence_sha256": "c1a3dc894e7b4829d5fe1a82012a992556fb9914e6d1c3a3891876f5c3cbde12"
+    }
+  },
+  "unresolved_blockers": []
+}

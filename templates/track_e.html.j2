@@ -1,0 +1,108 @@
+{# 
+  Jackie 观察视角 · 轨道 E 【产业演进与危机突围史诗线】标准排版模具 (Template E)
+  专供全球农业、渔业、畜牧业重大技术演进、危机倒逼突变与中外产业坐标史诗纪录体
+  四幕史诗结构：野蛮生长 -> 灭顶危机 -> 倒逼突变 -> 全球铁幕与中国坐标
+  100% 遵守出版级排版规范，严禁任何违规营销号话术与死板八步模板
+#}
+<section style="font-size:15px;line-height:1.86;color:#17252f;letter-spacing:0.5px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue','PingFang SC','Hiragino Sans GB','Microsoft YaHei UI','Microsoft YaHei',Arial,sans-serif;padding:0 8px;text-align:justify;">
+
+{% if documentary_opening %}
+<blockquote style="margin:20px 0;padding:15px 18px;background:#f0f7f6;border-left:4px solid #0e7490;color:#155e75;font-size:14.5px;line-height:1.78;border-radius:0 6px 6px 0;text-align:justify;">
+“{{ documentary_opening }}”
+</blockquote>
+{% endif %}
+
+{% if backdrop_card %}
+<section style="margin:22px 0;padding:16px 18px;background:#f8fafc;border-radius:6px;border:1px solid #e2e8f0;border-left:4px solid #0284c7;text-align:justify;">
+  <p style="margin:0 0 10px;font-weight:bold;color:#0369a1;font-size:14.5px;text-align:left;">【{{ backdrop_card.title|default("产业断代坐标 · 历史纵深") }}】</p>
+  <ul style="margin:0;padding-left:18px;color:#334155;font-size:13.5px;line-height:1.8;text-align:justify;">
+    {% for item in backdrop_card.metrics %}
+    <li style="margin:6px 0;text-align:justify;"><strong>{{ item.label }}</strong>：{{ item.value }}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% for act in acts %}
+<section style="margin:32px 0 16px;text-align:left;">
+  <p style="margin:0 0 6px;text-align:left;"><span style="display:inline-block;padding:2px 8px;background:#e0f2fe;color:#0369a1;font-size:12px;font-weight:bold;border-radius:3px;letter-spacing:0.5px;">{{ act.act_tag }}</span></p>
+  <h2 style="font-size:18px;font-weight:bold;color:#0f2b3c;border-left:4px solid #0e7490;padding-left:10px;margin:6px 0 16px;line-height:1.45;text-align:left;">{{ act.act_title }}</h2>
+</section>
+
+{% for p in act.paragraphs %}
+<p style="margin:16px 0;text-align:justify;">{{ p|safe }}</p>
+{% endfor %}
+
+{% if act.image %}
+<div style="margin:22px 0 18px;">
+  <img src="{{ img_urls.get(act.image.key, act.image.key) }}" style="width:100%;border-radius:6px;display:block;box-shadow:0 3px 10px rgba(0,0,0,0.05);" />
+  <p style="font-size:13px;color:#64748b;text-align:center;margin:8px 0 0;line-height:1.5;">{{ act.image.caption }}</p>
+</div>
+{% endif %}
+
+{% if act.extra_paragraphs_after_image %}
+{% for p in act.extra_paragraphs_after_image %}
+<p style="margin:16px 0;text-align:justify;">{{ p|safe }}</p>
+{% endfor %}
+{% endif %}
+
+{% if act.milestone_box %}
+<section style="margin:22px 0;padding:16px 18px;background:#fbfcfe;border-left:4px solid #0e7490;border-radius:4px;border-top:1px solid #f1f5f9;border-right:1px solid #f1f5f9;border-bottom:1px solid #f1f5f9;text-align:justify;">
+  <p style="margin:0 0 6px;font-weight:bold;color:#0f2b3c;font-size:14.5px;text-align:left;">💡 {{ act.milestone_box.title }}</p>
+  <p style="margin:0;font-size:13.5px;line-height:1.8;color:#334155;text-align:justify;">{{ act.milestone_box.content|safe }}</p>
+</section>
+{% endif %}
+
+{% if act.golden_quote %}
+<section style="margin:22px 0;padding:16px 20px;background:#f0fdfa;border-left:4px solid #0d9488;border-radius:4px;text-align:justify;">
+  <p style="margin:0;font-size:15px;font-weight:600;color:#134e4a;line-height:1.75;letter-spacing:0.3px;text-align:justify;">“{{ act.golden_quote|safe }}”</p>
+</section>
+{% endif %}
+
+{% if act.second_image %}
+<div style="margin:22px 0 18px;">
+  <img src="{{ img_urls.get(act.second_image.key, act.second_image.key) }}" style="width:100%;border-radius:6px;display:block;box-shadow:0 3px 10px rgba(0,0,0,0.05);" />
+  <p style="font-size:13px;color:#64748b;text-align:center;margin:8px 0 0;line-height:1.5;">{{ act.second_image.caption }}</p>
+</div>
+{% endif %}
+
+{% if act.final_paragraphs %}
+{% for p in act.final_paragraphs %}
+<p style="margin:16px 0;text-align:justify;">{{ p|safe }}</p>
+{% endfor %}
+{% endif %}
+
+{% if act.jackie_observation %}
+<section style="margin:24px 0;padding:16px 18px;background:#f8fafc;border-radius:6px;border-left:4px solid #334155;text-align:justify;">
+  <p style="margin:0;font-size:14px;line-height:1.8;color:#1e293b;text-align:justify;">
+    <strong>Jackie 观察视角：</strong>{{ act.jackie_observation|safe }}
+  </p>
+</section>
+{% endif %}
+
+{% endfor %}
+
+{% if data_card %}
+<div style="margin:26px 0 20px;">
+  <img src="{{ img_urls.get(data_card.key, data_card.key) }}" style="width:100%;border-radius:6px;display:block;box-shadow:0 4px 12px rgba(0,0,0,0.08);" />
+  <p style="font-size:13px;color:#64748b;text-align:center;margin:8px 0 0;line-height:1.5;">{{ data_card.caption }}</p>
+</div>
+{% endif %}
+
+{% if benchmark_card %}
+<section style="margin:24px 0;padding:16px 18px;background:#f8fafc;border-radius:6px;border-left:4px solid #0284c7;text-align:justify;">
+  <p style="margin:0 0 8px;font-weight:bold;color:#0369a1;font-size:14.5px;text-align:left;">【{{ benchmark_card.title|default("中外产业坐标 · 真实代差") }}】</p>
+  {% if benchmark_card.metrics %}
+  <ul style="margin:0;padding-left:18px;color:#334155;font-size:13.5px;line-height:1.8;text-align:justify;">
+    {% for item in benchmark_card.metrics %}
+    <li style="margin:6px 0;text-align:justify;"><strong>{{ item.label }}</strong>：{{ item.value|safe }}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <div style="font-size:13.5px;color:#334155;line-height:1.8;text-align:justify;">{{ benchmark_card.content|safe }}</div>
+  {% endif %}
+</section>
+{% endif %}
+
+</section>
+

@@ -1,0 +1,22 @@
+{
+  "schema": "sync_meta_v2",
+  "policy": "bidirectional_diff_strict",
+  "reclaimed_at": "2026-11-05T00:00:00Z",
+  "note": "Example sync baseline ledger template. Populated automatically by pipeline.py diff/push.",
+  "items": {
+    "2026-10-13-blueberry-price-chain": {
+      "media_id": "MEDIA_ID_DEMO_PLACEHOLDER_TOKEN_XXXXXX",
+      "title": "一边是40亿加注，一边是16块小果：蓝莓的钱，到底谁在赚",
+      "title_sha256": "4b55365518b5daee108620252194639e4431e67041a337854eb130f1d6b0a7aa",
+      "content_sha256": "8440084693fb055dbbd100e1eff5eb0084d8c5ba626f48a4c6130a21d1911a05",
+      "cn_count": 2635,
+      "html_len": 10448,
+      "thumb_media_id": "THUMB_MEDIA_ID_DEMO_PLACEHOLDER_XXXXXX",
+      "has_cover": true,
+      "opening_variant": "V2",
+      "ledger_synced_at": "2026-11-05",
+      "pushed_at": "2026-11-05T00:54:33.000000+00:00"
+    }
+  },
+  "inactive_items": {}
+}

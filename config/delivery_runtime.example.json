@@ -1,0 +1,12 @@
+{
+  "root": "/opt/wechat-publisher/releases/active",
+  "python": "/opt/wechat-publisher/releases/active/.venv/bin/python",
+  "upstream_commit": "main",
+  "validated_commit": "main",
+  "scope": "CLI release/push/verify/audit and bidirectional diff; existing services unchanged",
+  "validated_at": "2026-11-05",
+  "legacy_roots": {
+    "server": "/opt/wechat-publisher/backups/sealed",
+    "server_previous_release": "/opt/wechat-publisher/backups/previous"
+  }
+}

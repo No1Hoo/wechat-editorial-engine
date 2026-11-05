@@ -1,0 +1,151 @@
+{
+  "schema": 2,
+  "build_hash": "d2123603e734699ceb652e104b338f57c0f047c734b40f25f61cf60be225ae96",
+  "facts": {
+    "status": "approved",
+    "reviewer": "Jackie Agent",
+    "reviewer_identity": "ai_assisted_local_editor（非人类编辑，非平台批准）",
+    "reviewed_at": "2026-11-05T00:52:00.617024+08:00",
+    "evidence": [
+      {
+        "source": "evidence/source_blueberry_industry_stats.txt",
+        "finding": "150万亩面积、100万吨年产、40亿设施产业投资、云南120~160元早春地头价对比入夏15~25元崩跌、亩均10~15万设施投入及压差预冷技术指标全部核验可靠",
+        "evidence_file": "evidence/facts_review.md",
+        "evidence_sha256": "8d32ed533076b9ac4fced7bba41b85f58377657a11f9c39eaff409f6e210df09"
+      }
+    ]
+  },
+  "legal": {
+    "status": "approved",
+    "reviewer": "Jackie Agent",
+    "reviewer_identity": "ai_assisted_local_editor（非人类编辑，非平台批准）",
+    "reviewed_at": "2026-11-05T00:52:00.617024+08:00",
+    "evidence": [
+      {
+        "source": "evidence/legal_review.md",
+        "finding": "产业客观经济规律剖析，零不正当竞争，零商业诋毁，配图均为合法实景纪实且无露脸肖像，符合新闻合理引用",
+        "evidence_file": "evidence/legal_review.md",
+        "evidence_sha256": "1487f63aa1f58195784024fab8cb922ad2be90c9c241254caeb86bdeec32724a"
+      }
+    ]
+  },
+  "images": {
+    "cover_900x383.jpg": {
+      "sha256": "dee638d40a6e262d9edbed122ca7b5f2a5be7a65c13d91fc6ad14794a57a5788",
+      "asset_kind": "documentary_photo",
+      "status": "approved",
+      "source": "经 candidates 实景筛选与 screen_candidate_images.py 距离验距",
+      "rights": "权威公开纪实实拍，符合合理引用规范",
+      "visual_observation": "植株成熟蓝莓与均匀白霜特写",
+      "caption_binding": "封面",
+      "reviewer": "Jackie Agent",
+      "reviewed_at": "2026-11-05T00:52:00.617024+08:00",
+      "evidence_file": "evidence/image_ledger.json",
+      "evidence_sha256": "7ac41d1327c0c1d009bcda952fcfef03ddb2e8f31f40113bcce2101342f69bba"
+    },
+    "photos/00_lead_blueberry_facility.jpg": {
+      "sha256": "895a95df360e449d2b567089660e9de5a875d478c4fe5a15a4890369cb377d9a",
+      "asset_kind": "documentary_photo",
+      "status": "approved",
+      "source": "经 candidates 实景筛选与 screen_candidate_images.py 距离验距",
+      "rights": "权威公开纪实实拍，符合合理引用规范",
+      "visual_observation": "现代设施大棚内成排基质栽培盆与滴灌管网",
+      "caption_binding": "首屏主图",
+      "reviewer": "Jackie Agent",
+      "reviewed_at": "2026-11-05T00:52:00.617024+08:00",
+      "evidence_file": "evidence/image_ledger.json",
+      "evidence_sha256": "7ac41d1327c0c1d009bcda952fcfef03ddb2e8f31f40113bcce2101342f69bba"
+    },
+    "photos/p1_open_field_soil.jpg": {
+      "sha256": "b65a769fd4e0822a690b2b28398647e6083c5b7b9690b3ea3ed4d7db9ca32a5d",
+      "asset_kind": "documentary_photo",
+      "status": "approved",
+      "source": "经 candidates 实景筛选与 screen_candidate_images.py 距离验距",
+      "rights": "权威公开纪实实拍，符合合理引用规范",
+      "visual_observation": "传统露地土壤栽培模式下的成排蓝莓灌木丛",
+      "caption_binding": "第一节配图",
+      "reviewer": "Jackie Agent",
+      "reviewed_at": "2026-11-05T00:52:00.617024+08:00",
+      "evidence_file": "evidence/image_ledger.json",
+      "evidence_sha256": "7ac41d1327c0c1d009bcda952fcfef03ddb2e8f31f40113bcce2101342f69bba"
+    },
+    "photos/p2_drip_fertigation_substrate.jpg": {
+      "sha256": "5815cbd8a9c1518389198614edb8af86c48f3a23d86419417047f40518a8c6c9",
+      "asset_kind": "documentary_photo",
+      "status": "approved",
+      "source": "经 candidates 实景筛选与 screen_candidate_images.py 距离验距",
+      "rights": "权威公开纪实实拍，符合合理引用规范",
+      "visual_observation": "智能连栋温室内架设的高架基质栽培槽与双箭头滴灌管路",
+      "caption_binding": "第二节配图",
+      "reviewer": "Jackie Agent",
+      "reviewed_at": "2026-11-05T00:52:00.617024+08:00",
+      "evidence_file": "evidence/image_ledger.json",
+      "evidence_sha256": "7ac41d1327c0c1d009bcda952fcfef03ddb2e8f31f40113bcce2101342f69bba"
+    },
+    "photos/p3_hand_picking_bloom.jpg": {
+      "sha256": "705037dd86889bb38454adff159d3275dd071a1882f920bb69aa2d6ef52f7ec4",
+      "asset_kind": "documentary_photo",
+      "status": "approved",
+      "source": "经 candidates 实景筛选与 screen_candidate_images.py 距离验距",
+      "rights": "权威公开纪实实拍，符合合理引用规范",
+      "visual_observation": "采摘收集后表层完整保留天然均匀白色果粉的成熟蓝莓鲜果",
+      "caption_binding": "第三节配图",
+      "reviewer": "Jackie Agent",
+      "reviewed_at": "2026-11-05T00:52:00.617024+08:00",
+      "evidence_file": "evidence/image_ledger.json",
+      "evidence_sha256": "7ac41d1327c0c1d009bcda952fcfef03ddb2e8f31f40113bcce2101342f69bba"
+    },
+    "photos/p4_optical_sorting_machine.jpg": {
+      "sha256": "91238dad893bc9eccaa74eec7694969f734e1c2d577bb3fa102f8f5952ee2cbb",
+      "asset_kind": "documentary_photo",
+      "status": "approved",
+      "source": "经 candidates 实景筛选与 screen_candidate_images.py 距离验距",
+      "rights": "权威公开纪实实拍，符合合理引用规范",
+      "visual_observation": "自动化光学分级机通道内按照果径与成熟度分流的蓝莓输送槽",
+      "caption_binding": "第四节配图",
+      "reviewer": "Jackie Agent",
+      "reviewed_at": "2026-11-05T00:52:00.617024+08:00",
+      "evidence_file": "evidence/image_ledger.json",
+      "evidence_sha256": "7ac41d1327c0c1d009bcda952fcfef03ddb2e8f31f40113bcce2101342f69bba"
+    },
+    "photos/p5_cold_chain_precooling.jpg": {
+      "sha256": "5c79854606dbf4184c79f9083500d2e612dfbbe51b677244ff55c6167744ad56",
+      "asset_kind": "documentary_photo",
+      "status": "approved",
+      "source": "经 candidates 实景筛选与 screen_candidate_images.py 距离验距",
+      "rights": "权威公开纪实实拍，符合合理引用规范",
+      "visual_observation": "田头气调冷库内整齐码放等待进行压差预冷作业的采收周转框",
+      "caption_binding": "第五节配图",
+      "reviewer": "Jackie Agent",
+      "reviewed_at": "2026-11-05T00:52:00.617024+08:00",
+      "evidence_file": "evidence/image_ledger.json",
+      "evidence_sha256": "7ac41d1327c0c1d009bcda952fcfef03ddb2e8f31f40113bcce2101342f69bba"
+    },
+    "photos/p6_retail_clamshell_pack.jpg": {
+      "sha256": "d0699bc22f9770388689cdff9a13197ae235f6808b36fb79af80d073334cbec5",
+      "asset_kind": "documentary_photo",
+      "status": "approved",
+      "source": "经 candidates 实景筛选与 screen_candidate_images.py 距离验距",
+      "rights": "权威公开纪实实拍，符合合理引用规范",
+      "visual_observation": "产地直发冷链运抵终端货架的125克透明保鲜盒成品包装",
+      "caption_binding": "第六节配图",
+      "reviewer": "Jackie Agent",
+      "reviewed_at": "2026-11-05T00:52:00.617024+08:00",
+      "evidence_file": "evidence/image_ledger.json",
+      "evidence_sha256": "7ac41d1327c0c1d009bcda952fcfef03ddb2e8f31f40113bcce2101342f69bba"
+    },
+    "photos/p7_yunnan_berry_park.jpg": {
+      "sha256": "2433523de4914c282a7337e7dde3776a4b9110f53e0e5966ec746fe9b5035864",
+      "asset_kind": "documentary_photo",
+      "status": "approved",
+      "source": "经 candidates 实景筛选与 screen_candidate_images.py 距离验距",
+      "rights": "权威公开纪实实拍，符合合理引用规范",
+      "visual_observation": "云南高原产业园区内成片规划建设的高标准现代蓝莓生产基地",
+      "caption_binding": "第七节配图",
+      "reviewer": "Jackie Agent",
+      "reviewed_at": "2026-11-05T00:52:00.617024+08:00",
+      "evidence_file": "evidence/image_ledger.json",
+      "evidence_sha256": "7ac41d1327c0c1d009bcda952fcfef03ddb2e8f31f40113bcce2101342f69bba"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{#- 鱼粉/昆虫蛋白篇专用版式：墨黑+赭石单强调色，数字可视化，零色块堆叠 -#}
+<section style="padding:0 4px;font-size:16px;line-height:1.9;color:#333;letter-spacing:.5px;text-align:justify;">
+{%- if lead_hook %}
+<div style="margin:8px 0 28px;"><div style="width:28px;height:2px;background:#a53;margin-bottom:14px;"></div><p style="margin:0;font-size:17px;line-height:1.85;color:#222;">{{ lead_hook }}</p></div>
+{%- endif %}
+{%- macro pic(img, m='24px 0') -%}
+<p style="margin:{{ m }};font-size:12px;color:#999;text-align:left;"><img src="{{ img_urls.get(img.key, img.key) }}" style="width:100%;display:block;margin-bottom:6px;">{{ img.caption }}</p>
+{%- endmacro %}
+{%- if lead_image %}{{ pic(lead_image, '0 0 32px') }}{% endif %}
+{%- if key_takeaways %}
+<div style="margin:0 0 34px;border-top:1px solid #222;padding-top:10px;font-size:14px;line-height:1.75;color:#666;text-align:left;">
+<p style="margin:0 0 2px;font-size:12px;letter-spacing:4px;color:#a53;">先说结论</p>
+{%- for it in key_takeaways %}
+<div style="padding:10px 0;border-bottom:1px solid #e6e1d8;"><b style="color:#a53;">0{{ loop.index }} · {{ it.label }}</b><br>{{ it.desc }}</div>
+{%- endfor %}
+</div>
+{%- endif %}
+{%- for sec in sections %}
+{%- set parts = sec.title.split('：') %}
+<h2 style="margin:42px 0 18px;font-size:20px;line-height:1.35;color:#222;border-left:2px solid #a53;padding-left:10px;text-align:left;"><span style="font:12px Georgia;letter-spacing:2px;color:#a53;">{{ '%02d' % loop.index }} · {{ parts[0] if parts|length > 1 else '' }}</span><br>{{ parts[1] if parts|length > 1 else sec.title }}</h2>
+{%- set imgs = sec.images if sec.images else [] %}
+{%- for p in sec.paragraphs %}
+{%- set pi = loop.index0 %}
+<p>{{ p|safe }}</p>
+{%- for img in imgs if img.after is defined and img.after == pi %}{{ pic(img) }}{% endfor %}
+{%- if sec.figure is defined and sec.figure.after == pi %}
+<div style="margin:26px 0;padding:16px;background:#f6f3ed;font-size:13px;color:#222;text-align:left;">
+<b style="display:block;margin-bottom:12px;font-size:15px;">{{ sec.figure.title }}</b>
+{%- for r in sec.figure.rows %}
+{{ r.label }}<b style="float:right;font:16px Georgia;{{ 'color:#a53;' if r.hl else '' }}">{{ r.value }}</b><div style="width:{{ [r.bar, 2]|max }}%;height:6px;background:{{ '#a53' if r.hl else '#444' }};margin:5px 0 12px;"></div>
+{%- endfor %}
+<p style="margin:2px 0 0;font-size:12px;color:#999;">{{ sec.figure.note }}</p>
+</div>
+{%- endif %}
+{%- if sec.scale is defined and sec.scale.after == pi %}
+<div style="margin:26px 0;text-align:left;">
+<b style="display:block;margin-bottom:8px;font-size:15px;color:#222;">{{ sec.scale.title }}</b>
+<table style="width:100%;table-layout:fixed;border-spacing:4px 0;font-size:13px;line-height:1.5;color:#666;"><tr style="vertical-align:top;">
+{%- for s in sec.scale.steps %}
+<td><div style="height:6px;background:{{ ['#d9b8a3','#b9724c','#6e3219'][loop.index0] }};margin-bottom:8px;"></div><b style="font:17px Georgia;color:#222;">{{ s.range }}</b><br>{{ s.label }}</td>
+{%- endfor %}
+</tr></table>
+</div>
+{%- endif %}
+{%- if sec.numbers is defined and sec.numbers.after == pi %}
+<div style="margin:26px 0;border-top:1px solid #222;text-align:left;">
+<p style="margin:8px 0 2px;font-size:12px;letter-spacing:4px;color:#a53;">{{ sec.numbers.title }}</p>
+<table style="width:100%;table-layout:fixed;border-collapse:collapse;font-size:13px;line-height:1.5;color:#666;">
+{%- for row in sec.numbers['items']|batch(2) %}
+<tr style="border-bottom:1px solid #e6e1d8;vertical-align:top;">
+{%- for n in row %}
+<td style="padding:10px 4px 8px 0;"><b style="font:22px Georgia;color:{{ '#a53' if n.hl else '#222' }};">{{ n.value }}</b><br>{{ n.label }}</td>
+{%- endfor %}
+</tr>
+{%- endfor %}
+</table>
+</div>
+{%- endif %}
+{%- if sec.golden_quote and sec.quote_after is defined and sec.quote_after == pi %}
+<div style="margin:28px 6px 32px;text-align:left;"><p style="margin:0;font:40px/.8 Georgia;color:#a53;">“</p><p style="margin:4px 0 12px;font-size:18px;line-height:1.8;color:#222;font-weight:700;">{{ sec.golden_quote|safe }}</p><div style="width:28px;height:1px;background:#222;"></div></div>
+{%- endif %}
+{%- endfor %}
+{%- for img in imgs if img.after is not defined %}{{ pic(img) }}{% endfor %}
+{%- endfor %}
+<p style="margin:32px 0 8px;text-align:center;"><span style="display:inline-block;width:6px;height:6px;background:#a53;"></span></p>
+</section>

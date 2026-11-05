@@ -1,0 +1,17 @@
+# 微信公众号凭据配置模板（请重命名为 accounts.yaml 并填入真实凭据）
+# ⚠️ 注意：accounts.yaml 已在 .gitignore 中忽略，严禁提交到 Git 仓库！
+
+accounts:
+  default:
+    name: "your-official-account"
+    appid: "wx1234567890abcdef"
+    appsecret: "0123456789abcdef0123456789abcdef"
+    token: "your_webhook_token_if_needed"
+    aes_key: "your_encoding_aes_key_if_needed"
+    
+ssh:
+  host: "your-remote-vps"
+  user: "ubuntu"
+  port: 22
+  key_path: "~/.ssh/id_rsa"
+  remote_publisher_path: "/opt/wechat-publisher/releases/active"

@@ -1,0 +1,83 @@
+{#
+  Jackie 观察视角 · 轨道 D 【全球产业雷达】陆基循环水三文鱼专题模具
+  Profile: salmon_ras_editorial
+  风格对标：Bloomberg Businessweek / FT 工业特写排版
+  核心色彩：深海冷岩墨 (#152638) + 工业水深蓝 (#1e3a5f) + 债务亏损红 (#b93815) + 冷灰纸底 (#f8fafc)
+#}
+<section style="font-size:15px;line-height:1.86;color:#152638;letter-spacing:0.5px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue','PingFang SC','Hiragino Sans GB','Microsoft YaHei UI','Microsoft YaHei',Arial,sans-serif;padding:0 8px;text-align:justify;">
+
+{% if x_lead_hook or lead_hook or lead_quote %}
+<div style="margin:0 0 24px;padding:16px 18px;background:#f3f7fa;border-left:3px solid #1e3a5f;border-radius:2px;">
+<p style="margin:0;font-size:14.5px;line-height:1.8;color:#243e56;text-align:justify;">
+{{ x_lead_hook|default(lead_hook|default(lead_quote, true), true) }}
+</p>
+</div>
+{% endif %}
+
+{% if lead_image %}
+<div style="margin:0 0 26px;">
+<img src="{{ img_urls.get(lead_image.key, lead_image.key) }}" style="width:100%;height:auto;display:block;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.06);"/>
+<p style="margin:8px 0 0;text-align:left;font-size:12px;line-height:1.6;color:#64748b;">{{ lead_image.caption }}</p>
+</div>
+{% endif %}
+
+{% for sec in sections %}
+{% if sec.title|default('')|trim %}
+<h2 style="font-size:18px;font-weight:700;color:#152638;border-left:3px solid #1e3a5f;padding-left:10px;margin:32px 0 16px;text-align:left;letter-spacing:0.5px;">{{ sec.title }}</h2>
+{% endif %}
+
+{% for p in sec.paragraphs %}
+<p style="margin:16px 0;">{{ p|safe }}</p>
+{% endfor %}
+
+{% if sec.get('callout') %}
+<section style="margin:24px 0;background:#f8fafc;border:1px solid #dbe5ec;border-radius:4px;overflow:hidden;">
+<div style="padding:10px 14px;background:#eef4f8;border-bottom:1px solid #dbe5ec;">
+<span style="font-size:13px;font-weight:700;color:#1e3a5f;letter-spacing:0.5px;">{{ sec.callout.title }}</span>
+</div>
+<div style="padding:14px 16px;">
+{% if sec.callout.get('table') %}
+<table style="width:100%;border-collapse:collapse;margin:0 0 10px;font-size:13.5px;">
+<tbody>
+{% for row in sec.callout.table %}
+<tr style="border-bottom:1px dashed #dbe5ec;">
+<td style="padding:7px 0;color:#475569;">{{ row.label }}</td>
+<td style="padding:7px 0;text-align:right;font-weight:700;color:{{ row.get('color', '#1e3a5f') }};">{{ row.val }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endif %}
+<p style="margin:0;font-size:12.5px;line-height:1.65;color:#64748b;background:#f1f5f9;padding:8px 10px;border-radius:2px;text-align:justify;">
+{{ sec.callout.content|safe }}
+</p>
+</div>
+</section>
+{% endif %}
+
+{% if sec.get('comparison_card') %}
+<section style="margin:24px 0;background:#fafbfc;border:1px solid #e2e8f0;border-top:2px solid #1e3a5f;padding:14px 16px;border-radius:2px;">
+<p style="margin:0 0 10px;font-size:13.5px;font-weight:700;color:#152638;">{{ sec.comparison_card.title }}</p>
+<div style="font-size:13px;line-height:1.75;color:#334155;">
+{% for it in sec.comparison_card['items'] %}
+<div style="margin:0 0 8px;padding:9px 12px;background:{{ it.get('bg', '#f1f5f9') }};border-left:3px solid {{ it.get('accent', '#25455f') }};border-radius:2px;">
+<strong style="color:{{ it.get('title_color', '#152638') }};">{{ it.heading }}</strong><br/>
+{{ it.detail|safe }}
+</div>
+{% endfor %}
+</div>
+</section>
+{% endif %}
+
+{% if sec.get('images') %}
+{% for img in sec.images %}
+<div style="margin:22px 0 6px;">
+<img src="{{ img_urls.get(img.key, img.key) }}" style="width:100%;height:auto;display:block;margin:0;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.05);"/>
+<p style="margin:8px 0 20px;text-align:left;font-size:12px;line-height:1.6;color:#64748b;">{{ img.caption }}</p>
+</div>
+{% endfor %}
+{% endif %}
+
+{% endfor %}
+
+</section>

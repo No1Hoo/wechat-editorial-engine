@@ -1,0 +1,34 @@
+{# Bespoke editorial layout for 2026-10-24-aigro-robot-bankruptcy #}
+{%- macro picture(img) -%}
+<section style="margin:26px 0 34px"><img src="{{ img_urls.get(img.key,img.key) }}" style="display:block;width:100%"/><p style="margin:8px 0 0;font-size:12px;color:#8a8376;text-align:left">{{ img.caption }}</p></section>
+{%- endmacro -%}
+<section style="font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;font-size:16px;line-height:1.92;letter-spacing:0.4px;color:#252422;padding:0 6px;text-align:justify">
+<!-- custom_visual_judgment: robot_bankruptcy_editorial -->
+{%- set hook = lead_hook or x_lead_hook or lead_quote -%}
+{%- if hook %}
+<section style="margin:14px 0 24px;padding:0 0 20px;border-bottom:1px solid #ded9ce"><p style="margin:0;font-family:'Songti SC',SimSun,serif;font-size:16.5px;line-height:1.88;color:#3d3a35">{{ hook }}</p></section>
+{%- endif -%}
+{%- if lead_image %}{{ picture(lead_image) }}{% endif -%}
+{%- for sec in sections %}
+<h2 style="margin:38px 0 18px;{% if not loop.first %}padding-top:20px;border-top:1px solid #e5e0d5;{% endif %}border-left:1px solid #fff;padding-left:1px;font-size:21px;color:#1c1b19;text-align:left">{{ sec.title }}</h2>
+{%- for p in sec.paragraphs %}<p style="margin:0 0 18px">{{ p|safe }}</p>{% endfor -%}
+{%- if sec.images %}{% for img in sec.images %}{{ picture(img) }}{% endfor %}{% elif sec.image %}{{ picture(sec.image) }}{% endif -%}
+{%- endfor %}
+{%- if comparison_card %}
+<section style="margin:28px 0;padding:18px 18px 14px;background:#f7f5ef;border-top:2px solid #2b2723;border-bottom:1px solid #d4cebf;text-align:left">
+<p style="margin:0 0 12px;font-size:13.5px;font-weight:700;letter-spacing:0.5px;color:#5c5447">商业复盘 · 纸面神话与果园烂泥的现实对撞</p>
+<section style="display:table;width:100%;border-bottom:1px solid #e6e1d6;padding:10px 0">
+<section style="display:table-cell;width:24%;font-size:13px;font-weight:700;color:#2b2723">纸面设想</section>
+<section style="display:table-cell;font-size:13.5px;line-height:1.65;color:#575146">100公斤轻巧车身不压实土壤，双天线RTK+视觉顺行巡检，手机一键启动全自动割草松土。</section>
+</section>
+<section style="display:table;width:100%;border-bottom:1px solid #e6e1d6;padding:10px 0">
+<section style="display:table-cell;width:24%;font-size:13px;font-weight:700;color:#b44322">田间实况</section>
+<section style="display:table-cell;font-size:13.5px;line-height:1.65;color:#575146">雨后泥地太轻频繁打滑空转，硬树枝粗藤蔓屡卡刀盘，泥点糊住镜头致急停，高薪农工沦为随车保姆。</section>
+</section>
+<section style="display:table;width:100%;padding:11px 0 2px">
+<section style="display:table-cell;width:24%;font-size:13px;font-weight:700;color:#2b2723">财务终局</section>
+<section style="display:table-cell;font-size:13.5px;line-height:1.65;color:#2b2723">整套落地近40万年闲置10个月，厂家陷入跨国上门救火修车吞食毛利死循环，2026年10月22日法院宣告破产清算。</section>
+</section>
+</section>
+{%- endif %}
+</section>
