@@ -28,6 +28,7 @@
 18. [本地可视化配图工作台（Visual Curator）与人机协同 SOP](#十八本地可视化配图工作台visual-curator与人机协同-sop)
 19. [本地模板与发稿机云端部署环境的一致性同步铁律](#十九本地模板与发稿机云端部署环境的一致性同步铁律)
 20. [工作台后端插槽与正文段落映射防错位隔离](#二十工作台后端插槽与正文段落映射防错位隔离)
+30. [2026-11-05 移动端表格车祸防爆铁律：三列硬表格禁令、孤字孤字母防折行规约与卡片化微观数据设计 SOP](#三十2026-11-05-移动端表格车祸防爆铁律三列硬表格禁令孤字孤字母防折行规约与卡片化微观数据设计-sop)
 
 ---
 
@@ -394,7 +395,7 @@ Agent 错误地认为“去模板化”就是“讲故事”、“戏剧化”�
 ```
 ❌ 云端推送失败: 实际提交正文与已复核源稿的受控渲染不一致
 ```
-**根因分析**：发稿机（OPC Quick）上的 release 运行时目录（`/opt/wechat-publisher/releases/active `lead_image` 逻辑，导致远端发稿机重新校验渲染时产生的 HTML 与本地哈希不一致。
+**根因分析**：发稿机（OPC Quick）上的 release 运行时目录（`/home/ubuntu/wechat-publisher-releases/...`）部署的代码仍是旧版，其使用的旧版模板缺少 `lead_image` 逻辑，导致远端发稿机重新校验渲染时产生的 HTML 与本地哈希不一致。
 
 ### 2. 硬核教训与沉淀规则
 - **模板与契约演进必须双端同步**：
@@ -448,7 +449,7 @@ Agent 错误地认为“去模板化”就是“讲故事”、“戏剧化”�
 
 但对同级的 `wechat-publisher-releases-30da2ca-delivery-20261019`（1.3G）
 犯了错：归档命令实际失败了——`git bundle` 报
-`unable to normalize alternate object path: /opt/wechat-publisher
+`unable to normalize alternate object path: /home/ubuntu/wechat-publisher/.git/objects`
 （该目录用了 alternates 指向已失效路径），`git diff` 输出 0 行，
 `git archive` 产出 0 字节——而脚本**没有校验产物就继续执行删除**。
 
@@ -618,7 +619,7 @@ pipeline.py check 新增 **Gate 21**：判定落在 scripts/editorial_claims.cap
 成因：`scripts/mp_ops.py` 的 update 路径只在 `local.thumb_media_id` 为空时才上传封面；若 draft_meta 里留着
 一个已不可解析的旧 id，就会被原样复用，落库后再读即空。
 处置（实测有效）：**清空 `draft_meta.json.thumb_media_id`（留 previous 备查）→ 重新 authorize → release --mode update**，
-强制重新上传永久素材（`material/add_material?type=image`）→ 回读即稳定返回新 id（本轮 `MEDIA_ID_HISTORICAL_PLACEHOLDER…` 连续 3 次一致）。
+强制重新上传永久素材（`material/add_material?type=image`）→ 回读即稳定返回新 id（本轮 `lEv9Pl4XdmtWMq3…` 连续 3 次一致）。
 不要用"新建草稿"绕过；也不要只改本地封面文件而不清 id。
 
 ### 6. 微信 API 日配额耗尽（45009）会让 audit/diff 全场漂移
@@ -747,8 +748,8 @@ pipeline.py check 新增 **Gate 21**：判定落在 scripts/editorial_claims.cap
 
 #### 坑 4：本地模板与发稿机云端运行时环境漂移（Pitfall 19 终极落实）
 - **现象**：本地测试渲染完全正常，但执行 `push` 时发稿机报错：`ValueError: 正文编辑复核阻断：实际提交正文与已复核源稿的受控渲染不一致`。
-- **根因**：本地 `templates/` 新增或修改了定制模具（如 `track_d_salmon_editorial.html.j2`），而云端发稿机（OPC Quick）活跃运行目录 `/opt/wechat-publisher/releases/active 仍为旧模具，导致发稿机服务端渲染的正文与本地提交正文产生字符数与结构漂移！
-- **解法**：**本地模板改动后，推送前必须通过 SCP（`scp templates/* your-remote-vps:/opt/wechat-publisher/releases/active 推送前比对双端模板的 SHA256，确保字符级严格一致。
+- **根因**：本地 `templates/` 新增或修改了定制模具（如 `track_d_salmon_editorial.html.j2`），而云端发稿机（OPC Quick）活跃运行目录 `/home/ubuntu/wechat-publisher-releases/88429d1-delivery-20261021/templates/` 仍为旧模具，导致发稿机服务端渲染的正文与本地提交正文产生字符数与结构漂移！
+- **解法**：**本地模板改动后，推送前必须通过 SCP（`scp templates/* your-remote-host:/path/to/publisher/templates/`）同步至发稿机！** 推送前比对双端模板的 SHA256，确保字符级严格一致。
 
 #### 坑 5：PowerShell 行内脚本引号与字符集崩坏
 - **现象**：在 PowerShell 终端执行多行 Python 代码时频现 `SyntaxError: unterminated string literal` 或 `Unexpected token ')'`。
@@ -819,7 +820,7 @@ pipeline.py check 新增 **Gate 21**：判定落在 scripts/editorial_claims.cap
 
 ## 二十八、2026-11-05 蓝莓全产业链商业杂志重构、Track A 交付规范与食品/消费品“食欲与专业质感”一票否决红线（以现泡茶瓶盖为典型反面解剖）
 
-本轮蓝莓全产业链篇（《一边是40亿加注，一边是16块小果：蓝莓的钱，到底谁在赚》，Track A / `planting`，线上 Media ID: `MEDIA_ID_DEMO_PLACEHOLDER_TOKEN_XXXXXX`）通过 Stage 1 选题与试写认可、Stage 2 定制化商业杂志排版、8 张真机 16:9 横图多模态实检、手机视口切片预览与 Generative UI 验证，并成功交付至微信草稿箱（`draft_verified = true`，`pipeline.py diff --both` 确认 🟢 同步）。
+本轮蓝莓全产业链篇（《一边是40亿加注，一边是16块小果：蓝莓的钱，到底谁在赚》，Track A / `planting`，线上 Media ID: `lEv9Pl4XqmvzrRuNNbBfdh9p1wcvTJKOCakzrJG5IE03I2ouve8KErM3UNoTKLtR`）通过 Stage 1 选题与试写认可、Stage 2 定制化商业杂志排版、8 张真机 16:9 横图多模态实检、手机视口切片预览与 Generative UI 验证，并成功交付至微信草稿箱（`draft_verified = true`，`pipeline.py diff --both` 确认 🟢 同步）。
 
 本轮交付沉淀出五项极其关键的工业级交付红线与实战避坑经验：
 
@@ -882,7 +883,7 @@ pipeline.py check 新增 **Gate 21**：判定落在 scripts/editorial_claims.cap
     - 早春暖棚（120~160元/斤）至露地大汛（15~25元/斤）的价格断崖阶梯卡（`price_cliff`）；
     - 压差预冷 2 小时强制降温至 0~2℃ 的冷链生死线警示卡（`callout`）；
     - 以农业常识与实体产业出清规律收尾的纯净结语卡（`closing_box`），彻底杜绝晚会口号。
-* **同步铁律落实（Pitfall 19）**：在本地完成 `track_a_blueberry_editorial.html.j2` 编写后，推送前立即通过 SCP 同步至发稿机 `your-remote-vps`，两端 SHA256 绝对一致，确保远程渲染零漂移。
+* **同步铁律落实（Pitfall 19）**：在本地完成 `track_a_blueberry_editorial.html.j2` 编写后，推送前立即通过 SCP 同步至发稿机 `your-remote-host`，两端 SHA256 绝对一致，确保远程渲染零漂移。
 
 ---
 
@@ -921,3 +922,37 @@ pipeline.py check 新增 **Gate 21**：判定落在 scripts/editorial_claims.cap
   - **自动落盘与台账对齐**：30 秒内全自动生成对比报表并落盘至 `reports/ARTICLE_DIAGNOSIS_*.md` 与 `reports/snapshots/`，彻底终结手动探测盲区。
 
 
+---
+
+## 三十、2026-11-05 移动端表格车祸防爆铁律：三列硬表格禁令、孤字孤字母防折行规约与卡片化微观数据设计 SOP
+
+本轮在真机验收蓝莓篇、抹茶篇与昆虫鱼粉篇时，用户截屏直指排版严重翻车（“这些表格做的极其难看！”）。排查暴露了**“用桌面端表格思维做移动端排版”导致的出版级审美车祸**。本节固化其病理溯源与“三禁三倡”防爆设计铁律：
+
+### 1. 三大病理特征（典型车祸解剖）
+1. **多列硬表格挤爆窄视口（蓝莓篇）**：
+   - **翻车现象**：种植模式单位经济指标硬塞了 3 列表格。手机端屏幕宽度仅 360–390px，除去页面边距后每列不足 100px。
+   - **车祸后果**：第一列指标名称全部出现断头断尾的单字折行：“**亩均投**”\n“**入**”、“**丰产周**”\n“**期**”、“**大果比**”\n“**例**”、“**上市窗**”\n“**口**”；第二列“30%~40%”被生生拆成“30%~4”与“0%”两行；第三列更是出现孤立的“8”与“5%”。排版支离破碎，毫无出版级质感。
+2. **大字号未防折行导致单字母孤悬（抹茶篇）**：
+   - **翻车现象**：全球贸易剪刀差对比中，右侧采用了 22px Georgia 大字号展示日本终端溢价；
+   - **车祸后果**：因未设置防折行保护，在手机端宽度不足以容纳整个字符串时，英文字母“`g`”被强行挤落到了第二行（“`800–1500 元/k`”\n“`g`”），极其丑陋扎眼。
+3. **单薄 1px 黑细线与无背景裸奔（昆虫鱼粉篇）**：
+   - **翻车现象**：吨价格对照仅以一条 `border-top: 1px solid #222` 黑细线隔开，文字平铺在白底上；
+   - **车祸后果**：既无卡片容器，也无呼吸内边距和圆角底色，充满粗糙地摊感与廉价排版味。
+
+### 2. 移动端“三禁三倡”防爆设计铁律
+
+#### 🔴 三大禁令（触碰即推翻重来）
+* **一禁 3 列及以上固定 `<table>` 强塞正文**：
+  移动端物理宽度不可逆，正文数据对比严禁使用 3 列及以上固定表格。必须降维为**双列左右对比卡片**、**上下结构清单**或**带标题的 2 列并排药丸卡片**。
+* **二禁数值与单位无保护裸奔（零孤字、零断字母）**：
+  凡涉及“数值 + 单位”、“区间 + 指标”（如 `800–1500 元/kg`、`30%~40%`、`10~15 万元`），**必须强制包裹 `white-space: nowrap;`**；移动端大号数字字号上限严格控制在 **16px** 并加粗，确保在 360px 窄屏下整串字符在同一行完整舒展，绝对禁止单字或单字母掉行。
+* **三禁生硬 1px 黑细线与白底裸奔**：
+  严禁使用纯黑/纯灰的 1px 细线作为数据模块顶部分割。所有微观数据与经济账本必须封装在**独立出版级微观卡片**中。
+
+#### 🟢 三大倡导（商业杂志级排版标配）
+* **一倡双列药丸卡片（Dual-Pill Cards）**：
+  采用浅底色大卡片作为外壳（如 `#faf8f5` 暖灰或 `#f8fafc` 雅蓝），顶部配小胶囊徽章（如“吨价格对照”）；内部切出左右两个独立药丸卡片：左侧为基准/传统土壤，右侧为浅色底高亮突出（如 `#fff5f0` 配琥珀红 `#a53` 或淡绿配抹茶绿），对比强烈且对称整齐。
+* **二倡 4 项指标 2×2 呼吸网格响应**：
+  当对比数据达到 4 项时（如两种建厂路线），模板必须自动响应为 **2 行 × 2 列网格**（通过 `{% if loop.index0 == 2 %}</tr><tr>{% endif %}` 折行），确保每个单元格宽度保持在 150px 以上，杜绝横向拥挤。
+* **三倡 Stage 2 审读前置 1:1 视口切片检查**：
+  在完成正文排版、向用户呈交 Stage 2 manuscript 审定前，必须运行 `preview_slicer.py` 截取真机长图与 6 屏切片，并**强制使用 `read_file` 肉眼审看**各屏数据卡片在手机端是否有断字、单字母掉行或拥挤畸变，坚决杜绝带着视觉盲区推入草稿箱。

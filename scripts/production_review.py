@@ -21,8 +21,9 @@ ALLOWED_WORKFLOWS = {
     'JACKIE-WORKFLOW-2026-10-27-R7',
     'JACKIE-WORKFLOW-2026-10-28-R8',
     'JACKIE-WORKFLOW-2026-10-29-R10',
+    'JACKIE-WORKFLOW-2026-11-06-R12',
 }
-WORKFLOW = 'JACKIE-WORKFLOW-2026-10-29-R10'
+WORKFLOW = 'JACKIE-WORKFLOW-2026-11-06-R12'
 ARTIFACTS = {'topic': 'review/topic_brief.json', 'sample': 'review/sample.md',
              'manuscript': 'content.json'}
 ASSESSMENTS = ('originality', 'freshness', 'reader_value', 'company_claims')

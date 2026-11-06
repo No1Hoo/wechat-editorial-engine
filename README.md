@@ -5,6 +5,7 @@
 **对标《彭博商业周刊》《财新》排版水准 · 实体产业真实硬账基石 · 22 项工业级交付门禁 · 手机 1:1 视口切片工坊**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Workflow: R12](https://img.shields.io/badge/Workflow-2026--11--06--R12-blueviolet.svg)](#-核心架构与生产流水线)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-brightgreen.svg)](https://www.python.org/)
 [![Playwright](https://img.shields.io/badge/Playwright-Viewport%20Slicing-purple.svg)](https://playwright.dev/)
 [![Jinja2](https://img.shields.io/badge/Templates-Controlled%20Jinja2-red.svg)](https://palletsprojects.com/p/jinja/)
@@ -110,13 +111,24 @@ sequenceDiagram
   - 现代工业优先选用不锈钢防尘产线、明亮工况与对称几何美学实拍。
 ```
 
+### 3. 移动端表格车祸防爆四大铁律 (R12 核心)
+针对手机端（360~390px 物理视口）阅读场景建立刚性防爆规范：
+* **一禁 3 列及以上固定硬表格**：强塞正文必然导致单字跳行与数字折裂，必须降维为双列卡片（Dual-Pill Cards）或行式清单；
+* **二禁数值与单位无保护裸奔**：凡涉及价格/指标强制包裹 `white-space: nowrap;`，字号上限 ≤16px 加粗，彻底消灭孤悬次行的单字母（如字母“`g`”）或单汉字；
+* **三禁生硬 1px 黑细线与白底裸奔**：封装入独立圆角呼吸底色卡片（暖灰/雅蓝底色），4 项指标自动 2×2 网格呼吸排布；
+* **HTML 字符数精细预算（10,500 字符红线）**：精炼内联 style，在确保 2,550~2,720 字出版级汉字与多图的同时，将 HTML 字符总数控制在 10,500 字以内。
+
+### 4. 发后数据穿透诊断与静默发布避坑 (R12 核心)
+* **避坑静默发布误杀**：微信订阅号发表时**必须点击【发表】并勾选“开启群发通知”**，严禁点击无通知“发布”（静默发布剥夺读者弹窗通知，导致冷启动样本不足一票误杀）；
+* **深度数据穿透诊断引擎**：集成双列表穿透巡检脚本，一键提取真实 7 大渠道占比（公域算法推荐流 vs 私域社交）、完读率与送达率，台账日日连续沉淀。
+
 ---
 
 ## 🛠️ 快速上手 (Quick Start)
 
 ### 1. 环境准备
 ```bash
-git clone https://github.com/your-username/wechat-editorial-engine.git
+git clone https://github.com/No1Hoo/wechat-editorial-engine.git
 cd wechat-editorial-engine
 
 # 安装 Python 依赖
